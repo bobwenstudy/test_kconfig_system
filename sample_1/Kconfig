@@ -1,0 +1,45 @@
+mainmenu "Kconfig Demo"
+
+menu "Test Params setting"
+config TEST_ENABLE
+    bool "Enable test work"
+    default n
+    help
+        Will print debug information if enable.
+
+config TEST_SHOW_STRING
+    string "The show string info"
+    default "Test 123"
+
+config TEST_SHOW_INT
+    int "The show int info"
+	range 0 255
+    default 123
+
+
+config TEST_TOP_ENABLE
+	bool "Test Top Func"
+    default n
+    help
+        Function Test Top
+
+config TEST_SUB_0_ENABLE
+	bool "Test Sub 0 Func"
+    default n
+    help
+        Function Test Sub 0
+
+config TEST_SUB_1_ENABLE
+	bool "Test Sub 1 Func"
+    default n
+    depends on TEST_TOP_ENABLE
+    help
+        Function Test Sub 1
+
+config TEST_SHOW_SUB_INT
+    int
+    default 456 if TEST_SUB_0_ENABLE && TEST_SUB_1_ENABLE
+    default 123
+
+
+endmenu
