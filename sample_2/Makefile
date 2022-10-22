@@ -19,9 +19,6 @@ AUTOCONFIG_H := $(OUTPUT_PATH)/autoconfig.h
 #define Kconfig path
 KCONFIG_ROOT_PATH := Kconfig
 
-#define need hardwritten
-CONFIG_HANDWRITTEN := --handwritten-input-configs
-
 
 #For windows work.
 FIXPATH = $(subst /,\,$1)
@@ -38,14 +35,14 @@ clean:
 	del /q /s $(call FIXPATH, $(APP)/main.o driver/driver_test.o $(OUTPUT_PATH))
 
 $(AUTOCONFIG_H):$(DOTCONFIG_PATH)
-	python ../scripts/kconfig.py $(CONFIG_HANDWRITTEN) $(KCONFIG_ROOT_PATH) $(DOTCONFIG_PATH) $(AUTOCONFIG_H) $(OUTPUT_PATH)/log.txt $(DOTCONFIG_PATH)
+	python ../scripts/kconfig.py $(KCONFIG_ROOT_PATH) $(DOTCONFIG_PATH) $(AUTOCONFIG_H) $(OUTPUT_PATH)/log.txt $(DOTCONFIG_PATH)
 
 $(USER_RECORD_CONFIG_PATH): $(USER_CONFIG_SET)
 	@echo Using user config.
 #	create user_record.conf to record current setting.
 	@copy $(call FIXPATH, $^) $(call FIXPATH, $@)
 #	create .config by user config setting.
-	python ../scripts/kconfig.py $(CONFIG_HANDWRITTEN) $(KCONFIG_ROOT_PATH) $(DOTCONFIG_PATH) $(AUTOCONFIG_H) $(OUTPUT_PATH)/log.txt $(USER_CONFIG_SET)
+	python ../scripts/kconfig.py --handwritten-input-configs $(KCONFIG_ROOT_PATH) $(DOTCONFIG_PATH) $(AUTOCONFIG_H) $(OUTPUT_PATH)/log.txt $(USER_CONFIG_SET)
 
 export KCONFIG_CONFIG=$(DOTCONFIG_PATH)
 $(DOTCONFIG_PATH):$(USER_RECORD_CONFIG_PATH)
