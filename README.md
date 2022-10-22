@@ -783,29 +783,9 @@ test1的编译结果如上，clean完工程后，我们输入`make all APP=app\t
 
 **注意**：这里生成的是相对于`Kconfig`的差异文件，并不是基于当前配置的差异。
 
+![image-20221022173021662](https://img-blog.csdnimg.cn/img_convert/b5feb8a856375104c3726cca9bf68523.png)
 
 
-
-
-
-
-
-
-
-
-由于刚开始没有`.config`文件，会使用`prj.conf`文件生成`.config`文件，而后再用生成`.config`文件来生成`autoconfig.h`（**注意**，从图中可以看到，之前就已经生成好了autoconfig.h，后面并没有改变。这里是因为笔者暂时没办法将第一步只做merge动作并生成.config文件，所以只能这样了）。
-
-![image-20221022170159780](https://markdown-1306347444.cos.ap-shanghai.myqcloud.com/img/image-20221022170159780.png)
-
-
-
-
-
-
-
-需要提供main.c，Makefile，Kconfig。下面分别进行描述：
-
-![image-20221022173021662](https://markdown-1306347444.cos.ap-shanghai.myqcloud.com/img/image-20221022173021662.png)
 
 
 
