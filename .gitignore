@@ -1,0 +1,8 @@
+!*.gitkeep
+
+*.o
+*.exe
+*.h
+*.config
+*.txt
+*.conf
